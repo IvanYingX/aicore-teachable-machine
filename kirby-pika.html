@@ -10,7 +10,9 @@
 
     // the link to your model provided by Teachable Machine export panel
     const URL = "https://teachablemachine.withgoogle.com/models/LdbJPu0Lx/";
-
+    var kirby_snd = new Audio("https://aicore-files.s3.amazonaws.com/Kirby.mp3");
+    var pika_snd = new Audio("https://aicore-files.s3.amazonaws.com/Pikachu.mp3");
+    snd.loop = false;
     let model, webcam, labelContainer, maxPredictions;
 
     // Load the image model and setup the webcam
@@ -54,6 +56,32 @@
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
+          }
+        if (prediction[0].probability > 0.7){
+            kirby_beep();
+        } else {
+            kirby_stop();
         }
+        if (prediction[1].probability > 0.7){
+            pika_beep();
+        } else {
+            pika_stop();
+        }
+    }
+    
+    function kirby_beep() {
+    kirby_snd.play();
+    }
+    function kirby_stop() {
+        kirby_snd.pause();
+        kirby_snd.currentTime = 0;
+    }
+
+    function pika_beep() {
+        pika_snd.play();
+    }
+    function pika_stop() {
+        pika_snd.pause();
+        pika_snd.currentTime = 0;
     }
 </script>
