@@ -12,7 +12,7 @@
     const URL = "https://teachablemachine.withgoogle.com/models/LdbJPu0Lx/";
     var kirby_snd = new Audio("https://aicore-files.s3.amazonaws.com/Kirby.mp3");
     var pika_snd = new Audio("https://aicore-files.s3.amazonaws.com/Pikachu.mp3");
-    snd.loop = false;
+//     snd.loop = false;
     let model, webcam, labelContainer, maxPredictions;
 
     // Load the image model and setup the webcam
@@ -56,7 +56,7 @@
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
-          }
+        }
         if (prediction[0].probability > 0.7){
             kirby_beep();
         } else {
@@ -70,7 +70,7 @@
     }
     
     function kirby_beep() {
-    kirby_snd.play();
+        kirby_snd.play();
     }
     function kirby_stop() {
         kirby_snd.pause();
